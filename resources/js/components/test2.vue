@@ -1,28 +1,46 @@
 <template>
-   <nav
-      class="navbar navbar-light"
-      style="background-color: #e3f2fd; height: 85px"
-    >
-      
+  <div id="app">
+    <flipbook   class="flipbook" :pages="pages" :startPage="select"   singlePage v-slot="flipbook">
+      <button @click="flipbook.flipLeft">Previous Page</button>
+      <button @click="flipbook.flipRight">Next Page</button>
+      {{ flipbook.page }}
+      <div v-for="index in 4" :key="index">
 
-    <div class="col-2">
-      <a class="navbar-brand" href="#">Sticky top</a>
-    </div>
-    <div class="col-10">
- <b-progress
-                      variant="warning"
-                      :max="10"
-                      :value="countDown"
-                      height="25px"
-                    ></b-progress>
-       
+        <div >
+       <button ><div v-if="index!=flipbook.page"><a @click="flipbook.flipRight"><a @click="selectPage(index,flipbook.page);">{{index}}</a></a></div>
+       <div v-else>{{index}}</div></button> 
+        </div>
+     </div>
+    </flipbook>
   </div>
-    </nav>
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      pages: ["images/1.png", "images/2.png", "images/3.png", "images/1.png"],
+      select:1
+    };
+  },
+  methods: {
+    selectPage(page,currentPage){
+this.select = page-1;
+console.log(page);
+console.log(currentPage);
+    },
+
+
+  },
+  mounted() {
+    console.log(this.pages);
+  },
+};
 </script>
 
-<style lang="stylus">
-
+<style>
+.flipbook {
+  width: 30vw;
+  height: 30vh;
+}
 </style>

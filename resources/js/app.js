@@ -21,11 +21,17 @@ window.Vue = require('vue').default;
 import BootstrapVue from 'bootstrap-vue' //Importing
 import Vue from 'vue';
 import SvgVue from 'svg-vue';
+import flipbook from 'flipbook-vue';
+
 
 Vue.use(BootstrapVue) // Telling Vue to use this in whole application
 Vue.component('test1-component', require('./components/test1.vue').default);
 Vue.component('test2-component', require('./components/test2.vue').default);
 Vue.component('test3-component', require('./components/test3.vue').default);
+
+Vue.component('flipbook', require('flipbook-vue').default);
+
+Vue.use(flipbook);
 Vue.use(SvgVue);
 
 
@@ -37,6 +43,8 @@ Vue.use(SvgVue);
 
 const app = new Vue({
     el: '#app',
-   
+    components: {
+        
+     }
 });
 
